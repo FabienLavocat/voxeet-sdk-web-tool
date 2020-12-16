@@ -21465,12 +21465,20 @@ var Home = function (_Component) {
 
     _this.state = {
       startTest: false,
+      // Set your Consumer Key and Secret here
       consumerKey: "CONSUMER_KEY",
       consumerSecret: "CONSUMER_SECRET",
-      audioOnly: false
+      audioOnly: false,
+      promptKeys: true
+    };
+    _this.state = {
+      audioOnly: false,
+      promptKeys: _this.state.consumerKey.includes("CONSUMER_") || _this.state.consumerSecret.includes("CONSUMER_")
     };
     _this.startTesting = _this.startTesting.bind(_this);
     _this.handleChangeAudioOnly = _this.handleChangeAudioOnly.bind(_this);
+    _this.handleChangeConsumerKey = _this.handleChangeConsumerKey.bind(_this);
+    _this.handleChangeConsumerSecret = _this.handleChangeConsumerSecret.bind(_this);
     return _this;
   }
 
@@ -21481,9 +21489,23 @@ var Home = function (_Component) {
     }
   }, {
     key: 'handleChangeAudioOnly',
-    value: function handleChangeAudioOnly() {
+    value: function handleChangeAudioOnly(e) {
       this.setState({
-        audioOnly: !this.state.audioOnly
+        audioOnly: e.target.checked
+      });
+    }
+  }, {
+    key: 'handleChangeConsumerKey',
+    value: function handleChangeConsumerKey(e) {
+      this.setState({
+        consumerKey: e.target.value
+      });
+    }
+  }, {
+    key: 'handleChangeConsumerSecret',
+    value: function handleChangeConsumerSecret(e) {
+      this.setState({
+        consumerSecret: e.target.value
       });
     }
   }, {
@@ -21506,6 +21528,23 @@ var Home = function (_Component) {
           _react2.default.createElement(
             'div',
             { className: 'block-start' },
+            this.state.promptKeys && _react2.default.createElement(
+              'div',
+              { className: 'container-start-test' },
+              _react2.default.createElement(
+                'label',
+                { id: 'consumerKeyLabel', htmlFor: 'consumerKey' },
+                'Consumer Key'
+              ),
+              _react2.default.createElement('input', { type: 'text', id: 'consumerKey', onChange: this.handleChangeConsumerKey }),
+              _react2.default.createElement('br', null),
+              _react2.default.createElement(
+                'label',
+                { id: 'consumerSecretLabel', htmlFor: 'consumerSecret' },
+                'Consumer Secret'
+              ),
+              _react2.default.createElement('input', { type: 'password', id: 'consumerSecret', onChange: this.handleChangeConsumerSecret })
+            ),
             _react2.default.createElement(
               'div',
               { className: 'container-start-test' },
@@ -21514,11 +21553,7 @@ var Home = function (_Component) {
                 'label',
                 { id: 'audioOnlyLabel', htmlFor: 'audioOnly' },
                 'Audio Only'
-              )
-            ),
-            _react2.default.createElement(
-              'div',
-              { className: 'container-start-test' },
+              ),
               _react2.default.createElement(
                 'button',
                 { onClick: this.startTesting, className: 'btn' },
@@ -21587,6 +21622,24 @@ var Home = function (_Component) {
                 )
               )
             )
+          ),
+          _react2.default.createElement(
+            'div',
+            { className: 'block-footer' },
+            _react2.default.createElement(
+              'div',
+              { className: 'container-start-test' },
+              _react2.default.createElement(
+                'p',
+                null,
+                'Powered by ',
+                _react2.default.createElement(
+                  'a',
+                  { href: 'https://dolby.io', target: '_blank' },
+                  'dolby.io'
+                )
+              )
+            )
           )
         )
       );
@@ -21624,7 +21677,7 @@ exports = module.exports = __webpack_require__(151)(false);
 
 
 // module
-exports.push([module.i, "body {\n  background-color: #f9fafd;\n  font-family: 'Open Sans', sans-serif;\n}\n.container-background {\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-align: center;\n  -ms-flex-align: center;\n  align-items: center;\n  -webkit-box-pack: center;\n  -ms-flex-pack: center;\n  justify-content: center;\n  background-image: url(" + escape(__webpack_require__(152)) + ");\n  background-position: 50%;\n  background-size: contain;\n  background-repeat: no-repeat;\n  position: absolute;\n  top: 0;\n  bottom: 0;\n  left: 0;\n  right: 0;\n  z-index: 10;\n}\n.container {\n  margin: auto;\n  margin-top: 50px;\n  border-radius: 5px;\n  padding: 30px;\n  max-width: 1100px;\n  position: relative;\n  z-index: 100;\n}\n.container-stats {\n  margin-top: 35px;\n}\n.container-graph {\n  width: 47%;\n  display: inline-block;\n  padding: 10px;\n}\n.title-graph {\n  text-align: center;\n}\n.container-logo {\n  text-align: center;\n  margin-bottom: 15px;\n}\n.title-section {\n  font-size: 17px;\n  font-weight: 600;\n  border-bottom: 1px solid #ccc;\n  padding: 15px;\n  text-align: left;\n}\n.block-loading {\n  margin-top: 20px;\n  background-color: #fff;\n  border: 1px solid #ccc;\n  border-radius: 10px;\n  text-align: center;\n  padding: 25px;\n}\n.block {\n  margin-top: 20px;\n  background-color: #fff;\n  border: 1px solid #ccc;\n  border-radius: 10px;\n  padding: 10px;\n}\n.block-canvas-graph {\n  text-align: center;\n}\n.block-start {\n  background-color: #fff;\n  border: 1px solid #ccc;\n  border-radius: 10px;\n  padding: 15px;\n  margin: auto;\n  text-align: center;\n}\n.block-start input {\n  margin-top: 15px;\n}\n.block-start label {\n  font-size: 15px;\n  margin-right: 15px;\n  margin-left: 5px;\n}\n.list-network div {\n  width: 33%;\n  text-align: center;\n}\n.block-error {\n  width: 100%;\n  color: #fff;\n  border-radius: 4px;\n  background-color: #e65c5c;\n  font-size: 14px;\n  text-align: center;\n  margin-top: 15px;\n  padding: 10px 0px 10px 0px;\n}\n.container-start-test {\n  display: inline-block;\n}\n.loader {\n  border: 2px solid #f3f3f3;\n  border-radius: 50%;\n  border-top: 2px solid #58C6F4;\n  width: 28px;\n  height: 28px;\n  -webkit-animation: spin 2s linear infinite;\n  /* Safari */\n  animation: spin 2s linear infinite;\n}\n#loader-container {\n  margin: auto;\n  width: 32px;\n  height: 23px;\n  display: inline-block;\n  margin-right: 15px;\n  text-align: center;\n}\n/* Safari */\n@-webkit-keyframes spin {\n  0% {\n    -webkit-transform: rotate(0deg);\n  }\n  100% {\n    -webkit-transform: rotate(360deg);\n  }\n}\n@keyframes spin {\n  0% {\n    transform: rotate(0deg);\n  }\n  100% {\n    transform: rotate(360deg);\n  }\n}\n.state-testing {\n  padding: 15px;\n  margin-top: 20px;\n  text-align: center;\n}\n.list {\n  padding: 0;\n}\n.list li {\n  list-style: none;\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-align: center;\n  -ms-flex-align: center;\n  align-items: center;\n  border-top: 1px solid #F2F3F5 !important;\n  -webkit-box-pack: justify;\n  -ms-flex-pack: justify;\n  justify-content: space-between;\n  padding: 10px 20px;\n  margin: 0 10px;\n  font-size: 15px;\n}\n.list li:first-child {\n  border-top: none!important;\n}\n.form-group {\n  float: right;\n  width: 50%;\n}\n.container-input {\n  width: 100%;\n  display: flex;\n}\n.container-output {\n  width: 100%;\n  display: flex;\n  margin-top: 20px;\n}\n.btn {\n  color: #f9fafd;\n  padding: 8px 22px;\n  margin-left: 15px;\n  background-image: linear-gradient(224deg, #00d9ff, #208dff);\n  border-radius: 4px;\n  font-size: 15px;\n  letter-spacing: 0;\n  margin: 0;\n  display: -webkit-inline-box;\n  display: -ms-inline-flexbox;\n  display: inline-flex;\n  -webkit-box-align: center;\n  -ms-flex-align: center;\n  align-items: center;\n  -webkit-box-pack: center;\n  -ms-flex-pack: center;\n  justify-content: center;\n  text-align: center;\n  border: none;\n}\n.contain-audio {\n  padding: 15px;\n}\n.contain-audio select {\n  margin-right: 15px;\n  margin-left: 15px;\n}\n.container-video {\n  width: 50%;\n  display: inline-block;\n  text-align: center;\n}\n.form-group div {\n  width: 100%;\n  margin-top: 8px;\n}\n.form-group div select {\n  width: 95%;\n}\n.video-participant {\n  border-radius: 10px;\n}\n.loadbar {\n  list-style: none;\n  float: right;\n  padding: 0;\n  margin: 0 0 0 15px;\n}\n.loadbar li {\n  float: left;\n  position: relative;\n  width: 10px;\n  height: 20px;\n  margin-left: 1px;\n  background: #E5E5E5;\n  border-radius: 10px;\n}\n.loadbar li:first-child {\n  margin-left: 0;\n}\n.loadbar li > .ins {\n  background-color: #3E4665;\n  width: 10px;\n  height: 20px;\n  border-radius: 10px;\n}\n.container-explanation-title {\n  margin-bottom: 25px;\n  margin-top: 25px;\n  font-size: 17px;\n}\n.mos-explanation {\n  padding: 15px;\n  font-size: 15px;\n}\n.good {\n  color: #A7DD7E;\n}\n.average-good {\n  color: #FBC02D;\n}\n.average {\n  color: #FF7F00;\n}\n.bad {\n  color: #FF0000;\n}\n.container-explanation {\n  width: 33%;\n  display: inline-block;\n  text-align: center;\n}\n.container-explanation span {\n  font-size: 14px;\n  font-style: italic;\n}\n.one {\n  margin-left: 8px;\n  opacity: 0;\n  -webkit-animation: dot 1.3s infinite;\n  -webkit-animation-delay: 0s;\n  animation: dot 1.3s infinite;\n  animation-delay: 0s;\n}\n.two {\n  opacity: 0;\n  -webkit-animation: dot 1.3s infinite;\n  -webkit-animation-delay: 0.2s;\n  animation: dot 1.3s infinite;\n  animation-delay: 0.2s;\n}\n.three {\n  opacity: 0;\n  -webkit-animation: dot 1.3s infinite;\n  -webkit-animation-delay: 0.3s;\n  animation: dot 1.3s infinite;\n  animation-delay: 0.3s;\n}\n@-webkit-keyframes dot {\n  0% {\n    opacity: 0;\n  }\n  50% {\n    opacity: 0;\n  }\n  100% {\n    opacity: 1;\n  }\n}\n@keyframes dot {\n  0% {\n    opacity: 0;\n  }\n  50% {\n    opacity: 0;\n  }\n  100% {\n    opacity: 1;\n  }\n}\n", ""]);
+exports.push([module.i, "body {\n  background-color: #f9fafd;\n  font-family: 'Open Sans', sans-serif;\n}\n.container-background {\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-align: center;\n  -ms-flex-align: center;\n  align-items: center;\n  -webkit-box-pack: center;\n  -ms-flex-pack: center;\n  justify-content: center;\n  background-image: url(" + escape(__webpack_require__(152)) + ");\n  background-position: 50%;\n  background-size: contain;\n  background-repeat: no-repeat;\n  position: absolute;\n  top: 0;\n  bottom: 0;\n  left: 0;\n  right: 0;\n  z-index: 10;\n}\n.container {\n  margin: auto;\n  margin-top: 50px;\n  border-radius: 5px;\n  padding: 30px;\n  max-width: 1100px;\n  position: relative;\n  z-index: 100;\n}\n.container-stats {\n  margin-top: 35px;\n}\n.container-graph {\n  width: 47%;\n  display: inline-block;\n  padding: 10px;\n}\n.title-graph {\n  text-align: center;\n}\n.container-logo {\n  text-align: center;\n  margin-bottom: 15px;\n}\n.title-section {\n  font-size: 17px;\n  font-weight: 600;\n  border-bottom: 1px solid #ccc;\n  padding: 15px;\n  text-align: left;\n}\n.block-loading {\n  margin-top: 20px;\n  background-color: #fff;\n  border: 1px solid #ccc;\n  border-radius: 10px;\n  text-align: center;\n  padding: 25px;\n}\n.block {\n  margin-top: 20px;\n  background-color: #fff;\n  border: 1px solid #ccc;\n  border-radius: 10px;\n  padding: 10px;\n}\n.block-canvas-graph {\n  text-align: center;\n}\n.block-start {\n  background-color: #fff;\n  border: 1px solid #ccc;\n  border-radius: 10px;\n  padding: 15px;\n  margin: auto;\n  text-align: center;\n}\n.block-start input {\n  margin-top: 15px;\n}\n.block-start label {\n  font-size: 15px;\n  margin-right: 15px;\n  margin-left: 5px;\n}\n.block-footer {\n  background-color: #fff;\n  border: 1px solid #ccc;\n  border-radius: 10px;\n  padding: 0;\n  margin: 15px 0;\n  text-align: center;\n}\n.list-network div {\n  width: 33%;\n  text-align: center;\n}\n.block-error {\n  width: 100%;\n  color: #fff;\n  border-radius: 4px;\n  background-color: #e65c5c;\n  font-size: 14px;\n  text-align: center;\n  margin-top: 15px;\n  padding: 10px 0px 10px 0px;\n}\n.container-start-test {\n  display: block;\n  margin-bottom: 15px;\n}\n.loader {\n  border: 2px solid #f3f3f3;\n  border-radius: 50%;\n  border-top: 2px solid #58C6F4;\n  width: 28px;\n  height: 28px;\n  -webkit-animation: spin 2s linear infinite;\n  /* Safari */\n  animation: spin 2s linear infinite;\n}\n#loader-container {\n  margin: auto;\n  width: 32px;\n  height: 23px;\n  display: inline-block;\n  margin-right: 15px;\n  text-align: center;\n}\n/* Safari */\n@-webkit-keyframes spin {\n  0% {\n    -webkit-transform: rotate(0deg);\n  }\n  100% {\n    -webkit-transform: rotate(360deg);\n  }\n}\n@keyframes spin {\n  0% {\n    transform: rotate(0deg);\n  }\n  100% {\n    transform: rotate(360deg);\n  }\n}\n.state-testing {\n  padding: 15px;\n  margin-top: 20px;\n  text-align: center;\n}\n.list {\n  padding: 0;\n}\n.list li {\n  list-style: none;\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-align: center;\n  -ms-flex-align: center;\n  align-items: center;\n  border-top: 1px solid #F2F3F5 !important;\n  -webkit-box-pack: justify;\n  -ms-flex-pack: justify;\n  justify-content: space-between;\n  padding: 10px 20px;\n  margin: 0 10px;\n  font-size: 15px;\n}\n.list li:first-child {\n  border-top: none!important;\n}\n.form-group {\n  float: right;\n  width: 50%;\n}\n.container-input {\n  width: 100%;\n  display: flex;\n}\n.container-output {\n  width: 100%;\n  display: flex;\n  margin-top: 20px;\n}\n.btn {\n  color: #f9fafd;\n  padding: 8px 22px;\n  margin-left: 15px;\n  background-image: linear-gradient(224deg, #00d9ff, #208dff);\n  border-radius: 4px;\n  font-size: 15px;\n  letter-spacing: 0;\n  margin: 0;\n  display: -webkit-inline-box;\n  display: -ms-inline-flexbox;\n  display: inline-flex;\n  -webkit-box-align: center;\n  -ms-flex-align: center;\n  align-items: center;\n  -webkit-box-pack: center;\n  -ms-flex-pack: center;\n  justify-content: center;\n  text-align: center;\n  border: none;\n}\n.contain-audio {\n  padding: 15px;\n}\n.contain-audio select {\n  margin-right: 15px;\n  margin-left: 15px;\n}\n.container-video {\n  width: 50%;\n  display: inline-block;\n  text-align: center;\n}\n.form-group div {\n  width: 100%;\n  margin-top: 8px;\n}\n.form-group div select {\n  width: 95%;\n}\n.video-participant {\n  border-radius: 10px;\n}\n.loadbar {\n  list-style: none;\n  float: right;\n  padding: 0;\n  margin: 0 0 0 15px;\n}\n.loadbar li {\n  float: left;\n  position: relative;\n  width: 10px;\n  height: 20px;\n  margin-left: 1px;\n  background: #E5E5E5;\n  border-radius: 10px;\n}\n.loadbar li:first-child {\n  margin-left: 0;\n}\n.loadbar li > .ins {\n  background-color: #3E4665;\n  width: 10px;\n  height: 20px;\n  border-radius: 10px;\n}\n.container-explanation-title {\n  margin-bottom: 25px;\n  margin-top: 25px;\n  font-size: 17px;\n}\n.mos-explanation {\n  padding: 15px;\n  font-size: 15px;\n}\n.good {\n  color: #A7DD7E;\n}\n.average-good {\n  color: #FBC02D;\n}\n.average {\n  color: #FF7F00;\n}\n.bad {\n  color: #FF0000;\n}\n.container-explanation {\n  width: 33%;\n  display: inline-block;\n  text-align: center;\n}\n.container-explanation span {\n  font-size: 14px;\n  font-style: italic;\n}\n.one {\n  opacity: 0;\n  -webkit-animation: dot 1.3s infinite;\n  -webkit-animation-delay: 0s;\n  animation: dot 1.3s infinite;\n  animation-delay: 0s;\n}\n.two {\n  opacity: 0;\n  -webkit-animation: dot 1.3s infinite;\n  -webkit-animation-delay: 0.2s;\n  animation: dot 1.3s infinite;\n  animation-delay: 0.2s;\n}\n.three {\n  opacity: 0;\n  -webkit-animation: dot 1.3s infinite;\n  -webkit-animation-delay: 0.3s;\n  animation: dot 1.3s infinite;\n  animation-delay: 0.3s;\n}\n@-webkit-keyframes dot {\n  0% {\n    opacity: 0;\n  }\n  50% {\n    opacity: 0;\n  }\n  100% {\n    opacity: 1;\n  }\n}\n@keyframes dot {\n  0% {\n    opacity: 0;\n  }\n  50% {\n    opacity: 0;\n  }\n  100% {\n    opacity: 1;\n  }\n}\ninput {\n  -webkit-writing-mode: horizontal-tb !important;\n  text-rendering: auto;\n  color: -internal-light-dark(black, white);\n  letter-spacing: normal;\n  word-spacing: normal;\n  text-transform: none;\n  text-indent: 0px;\n  text-shadow: none;\n  display: inline-block;\n  text-align: start;\n  appearance: textfield;\n  background-color: -internal-light-dark(#ffffff, #3b3b3b);\n  -webkit-rtl-ordering: logical;\n  cursor: text;\n  margin: 0em;\n  font: 400 13.3333px Arial;\n  padding: 1px 2px;\n  border-width: 2px;\n  border-style: inset;\n  border-color: -internal-light-dark(#767676, #858585);\n  border-image: initial;\n  border-radius: 2px;\n}\ninput[type=text],\ninput[type=password] {\n  width: 250px;\n  padding: 0.375rem 0.75rem;\n  font-size: 1rem;\n  font-weight: 400;\n  line-height: 1.5;\n  color: #212529;\n  background-color: #fff;\n  background-clip: padding-box;\n  border: 1px solid #ced4da;\n  -webkit-appearance: none;\n  -moz-appearance: none;\n  appearance: none;\n  border-radius: 0.25rem;\n  transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;\n}\ninput[type=checkbox] {\n  border-radius: 0.25em;\n  width: 16px;\n  height: 16px;\n  margin-top: 0.5em;\n  vertical-align: top;\n  background-color: #fff;\n  background-repeat: no-repeat;\n  background-position: center;\n  background-size: contain;\n  border: 1px solid rgba(0, 0, 0, 0.25);\n  -webkit-appearance: none;\n  -moz-appearance: none;\n  appearance: none;\n  -webkit-print-color-adjust: exact;\n  color-adjust: exact;\n  transition: background-color 0.15s ease-in-out, background-position 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;\n}\ninput:focus[type=checkbox] {\n  border-color: #86b7fe;\n  outline: 0;\n  box-shadow: 0 0 0 0.25rem rgba(13, 110, 253, 0.25);\n}\ninput:checked[type=checkbox] {\n  background-image: url(\"data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'%3e%3cpath fill='none' stroke='%23fff' stroke-linecap='round' stroke-linejoin='round' stroke-width='3' d='M6 10l3 3l6-6'/%3e%3c/svg%3e\");\n}\ninput:checked {\n  background-color: #0d6efd;\n  border-color: #0d6efd;\n}\n", ""]);
 
 // exports
 
